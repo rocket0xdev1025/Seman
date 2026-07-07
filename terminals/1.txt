@@ -1,0 +1,14 @@
+---
+pid: 12952
+cwd: "C:\Users\Tony\Downloads\SOL\SEMAN"
+command: "cd \"C:\\Users\\Tony\\Downloads\\SOL\\SEMAN\" && python -m http.server 8765"
+started_at: 2026-07-07T01:15:18.603Z
+running_for_ms: 1560005  
+---
+At line:1 char:40
++ cd "C:\Users\Tony\Downloads\SOL\SEMAN" && python -m http.server 8765
++                                        ~~
+The token '&&' is not a valid statement separator in this version.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : InvalidEndOfLine
+ 

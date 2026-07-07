@@ -1,0 +1,8 @@
+---
+pid: 24432
+cwd: "C:\Users\Tony\Downloads\SOL\SEMAN"
+command: "Set-Location \"C:\\Users\\Tony\\Downloads\\SOL\\SEMAN\"; python -m http.server 8765"
+started_at: 2026-07-07T01:15:35.971Z
+running_for_ms: 1540005  
+---
+Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.

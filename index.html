@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Black Sperm — $SEMAN</title>
+  <meta name="description" content="Proof that one typo can have stronger lore than the original word. $SEMAN — started as a spelling mistake, ended as a full blown meme." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            seman: {
+              sperm: '#F5F0E8',
+              'sperm-dark': '#D9D2C4',
+              'sperm-light': '#FFFDF7',
+              dark: '#0a0a0a',
+              gray: '#1a1a1a',
+            }
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+            body: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+            'marquee': 'marquee 25s linear infinite',
+            'glitch': 'glitch 3s infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(245,240,232,0.35)' },
+              '50%': { boxShadow: '0 0 40px rgba(245,240,232,0.7), 0 0 60px rgba(245,240,232,0.25)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            glitch: {
+              '0%, 90%, 100%': { transform: 'translate(0)' },
+              '92%': { transform: 'translate(-2px, 1px)' },
+              '94%': { transform: 'translate(2px, -1px)' },
+              '96%': { transform: 'translate(-1px, -1px)' },
+              '98%': { transform: 'translate(1px, 1px)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Hobo Std', system-ui, sans-serif;
+      background: #0a0a0a;
+      overflow-x: hidden;
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(8,8,6,0.85) 50%, rgba(0,0,0,0.9) 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.04;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Photo frame for video */
+    .photo-frame {
+      position: relative;
+      padding: 18px;
+      background: linear-gradient(145deg, #2a2a2a 0%, #111 40%, #1e1e1e 60%, #0d0d0d 100%);
+      border-radius: 4px;
+      box-shadow:
+        0 0 0 3px #1a1a1a,
+        0 0 0 6px #F5F0E8,
+        0 0 0 9px #1a1a1a,
+        0 25px 60px rgba(0,0,0,0.8),
+        inset 0 2px 4px rgba(255,255,255,0.08),
+        inset 0 -2px 4px rgba(0,0,0,0.5);
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .photo-frame::after {
+      content: 'SEMAN';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-1deg);
+      background: #f5f0e8;
+      color: #111;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.3em;
+      padding: 6px 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border: 1px solid #ddd;
+    }
+
+    .photo-inner {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      background: #000;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+    }
+
+    .tape {
+      position: absolute;
+      width: 90px;
+      height: 28px;
+      background: rgba(245,240,232,0.75);
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .tape-top-left {
+      top: -8px;
+      left: 30px;
+      transform: rotate(-8deg);
+    }
+
+    .tape-top-right {
+      top: -8px;
+      right: 30px;
+      transform: rotate(8deg);
+    }
+
+    /* Universal image hover FX */
+    .img-fx {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      border-radius: inherit;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease, filter 0.45s ease;
+      will-change: transform;
+    }
+
+    .img-fx::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.45) 50%, transparent 65%);
+      transform: translateX(-120%);
+      transition: transform 0.65s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .img-fx::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      border: 2px solid transparent;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .img-fx:hover {
+      transform: scale(1.06) rotate(2deg);
+      box-shadow: 0 0 30px rgba(245,240,232,0.35), 0 20px 40px rgba(0,0,0,0.5);
+      filter: brightness(1.12) saturate(1.1);
+    }
+
+    .img-fx:hover::before {
+      transform: translateX(120%);
+    }
+
+    .img-fx:hover::after {
+      border-color: rgba(245,240,232,0.7);
+      box-shadow: inset 0 0 20px rgba(245,240,232,0.15);
+    }
+
+    .img-fx img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .img-fx:hover img {
+      transform: scale(1.1);
+    }
+
+    .img-fx--round { border-radius: 50%; }
+    .img-fx--round::after { border-radius: 50%; }
+
+    .img-fx--icon:hover {
+      transform: scale(1.18) rotate(-8deg);
+    }
+
+    /* Gallery — combined flow + rotate */
+    .gallery-combined {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-combined::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(245,240,232,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      animation: galleryGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes galleryGlow {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+    }
+
+    .gallery-cluster {
+      position: relative;
+      height: 420px;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-cluster { height: 480px; }
+    }
+
+    .gallery-card {
+      position: absolute;
+      width: clamp(140px, 22vw, 220px);
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      transform: rotate(var(--rot, 0deg)) translate(var(--tx, 0), var(--ty, 0));
+      transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s;
+      animation: galleryFloat var(--dur, 5s) ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      z-index: var(--z, 1);
+    }
+
+    .gallery-card:nth-child(1) { left: 2%;  top: 18%; --rot: -14deg; --z: 2; --dur: 5.2s; --delay: 0s;   }
+    .gallery-card:nth-child(2) { left: 18%; top: 5%;  --rot: 9deg;   --z: 4; --dur: 4.8s; --delay: 0.4s; }
+    .gallery-card:nth-child(3) { left: 34%; top: 22%; --rot: -6deg;  --z: 3; --dur: 5.5s; --delay: 0.8s; }
+    .gallery-card:nth-child(4) { left: 50%; top: 8%;  --rot: 12deg;  --z: 5; --dur: 4.5s; --delay: 1.2s; }
+    .gallery-card:nth-child(5) { left: 66%; top: 20%; --rot: -10deg; --z: 3; --dur: 5.8s; --delay: 0.6s; }
+    .gallery-card:nth-child(6) { left: 82%; top: 10%; --rot: 7deg;   --z: 2; --dur: 5s;   --delay: 1s;   }
+
+    @media (max-width: 767px) {
+      .gallery-cluster { height: 900px; }
+      .gallery-card:nth-child(1) { left: 5%;  top: 2%;  --rot: -8deg; }
+      .gallery-card:nth-child(2) { left: 52%; top: 0%;  --rot: 6deg; }
+      .gallery-card:nth-child(3) { left: 8%;  top: 28%; --rot: -5deg; }
+      .gallery-card:nth-child(4) { left: 50%; top: 30%; --rot: 9deg; }
+      .gallery-card:nth-child(5) { left: 5%;  top: 56%; --rot: -7deg; }
+      .gallery-card:nth-child(6) { left: 52%; top: 58%; --rot: 5deg; }
+    }
+
+    @keyframes galleryFloat {
+      0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+      50% { transform: rotate(calc(var(--rot, 0deg) + 3deg)) translateY(-14px); }
+    }
+
+    .gallery-card:hover {
+      animation-play-state: paused;
+      z-index: 20 !important;
+      transform: rotate(0deg) scale(1.14) translateY(-20px) !important;
+    }
+
+    .gallery-card-inner {
+      border-radius: 14px;
+      border: 3px solid rgba(245,240,232,0.2);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      background: #111;
+      aspect-ratio: 1;
+    }
+
+    .gallery-card:hover .gallery-card-inner {
+      border-color: #F5F0E8;
+      box-shadow: 0 0 40px rgba(245,240,232,0.35), 0 25px 50px rgba(0,0,0,0.7);
+    }
+
+    .gallery-stream {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    }
+
+    .gallery-stream + .gallery-stream {
+      margin-top: 1.25rem;
+    }
+
+    .gallery-stream-track {
+      display: flex;
+      gap: 1.75rem;
+      width: max-content;
+      animation: galleryFlow var(--speed, 35s) linear infinite;
+    }
+
+    .gallery-stream--reverse .gallery-stream-track {
+      animation-direction: reverse;
+    }
+
+    .gallery-stream:hover .gallery-stream-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes galleryFlow {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .gallery-flow-card {
+      flex-shrink: 0;
+      width: 180px;
+      transform: rotate(var(--flow-rot, 0deg));
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+    }
+
+    .gallery-flow-card:hover {
+      transform: rotate(0deg) scale(1.12) translateY(-10px);
+      z-index: 10;
+    }
+
+    .gallery-flow-card .img-fx {
+      border-radius: 12px;
+      aspect-ratio: 1;
+      border: 2px solid rgba(245,240,232,0.15);
+    }
+
+    .gallery-card .img-fx:hover,
+    .gallery-flow-card .img-fx:hover {
+      transform: none;
+      filter: none;
+      box-shadow: none;
+    }
+
+    .gallery-card:hover .img-fx::before,
+    .gallery-flow-card:hover .img-fx::before {
+      transform: translateX(120%);
+    }
+
+    .gallery-card:hover .img-fx::after,
+    .gallery-flow-card:hover .img-fx::after {
+      border-color: rgba(245,240,232,0.7);
+    }
+
+    .step-card {
+      background: linear-gradient(135deg, rgba(26,26,26,0.9) 0%, rgba(10,10,10,0.95) 100%);
+      border: 1px solid rgba(245,240,232,0.15);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      border-color: rgba(245,240,232,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(245,240,232,0.12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #FFFDF7 0%, #F5F0E8 50%, #E8E0D0 100%);
+      color: #0a0a0a;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFFDF7 50%, #F5F0E8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245,240,232,0.45);
+    }
+
+    .btn-outline {
+      border: 2px solid #F5F0E8;
+      color: #F5F0E8;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(245,240,232,0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(245,240,232,0.25);
+    }
+
+    .ca-box {
+      background: rgba(0,0,0,0.6);
+      border: 1px dashed rgba(245,240,232,0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    .ca-box.copied {
+      border-color: #22c55e;
+      background: rgba(34,197,94,0.1);
+    }
+
+    .live-dot {
+      box-shadow: 0 0 8px #22c55e;
+      animation: livePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .stat-card {
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #F5F0E8;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .social-icon {
+      transition: all 0.3s ease;
+      filter: grayscale(30%);
+    }
+
+    .social-icon:hover {
+      filter: grayscale(0%) drop-shadow(0 0 12px rgba(245,240,232,0.55));
+    }
+
+    .strikethrough-ansem {
+      position: relative;
+      display: inline-block;
+    }
+
+    .strikethrough-ansem::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -5%;
+      width: 110%;
+      height: 4px;
+      background: #F5F0E8;
+      transform: rotate(-8deg);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      border: 3px solid #F5F0E8;
+      box-shadow: 0 0 60px rgba(245,240,232,0.25);
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: #F5F0E8; border-radius: 4px; }
+  </style>
+</head>
+<body class="text-white antialiased">
+
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="bg.mp4" type="video/mp4" />
+  </video>
+  <div class="bg-overlay"></div>
+  <div class="noise"></div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-xl border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <a href="#" class="flex items-center gap-3 group">
+          <span class="img-fx img-fx--round inline-block h-10 w-10 md:h-12 md:w-12 animate-float">
+            <img src="logo.png" alt="SEMAN Logo" class="h-full w-full object-contain" />
+          </span>
+          <div>
+            <span class="font-display text-xl md:text-2xl tracking-wider text-white group-hover:text-seman-sperm transition-colors">THE BLACK SPERM</span>
+            <span class="block text-xs text-seman-sperm font-bold tracking-[0.3em]">$SEMAN</span>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+          <a href="#about" class="nav-link hover:text-white transition-colors">About</a>
+          <a href="#gallery" class="nav-link hover:text-white transition-colors">Gallery</a>
+          <a href="#how-to-buy" class="nav-link hover:text-white transition-colors">How to Buy</a>
+          <a href="#chart" class="nav-link hover:text-white transition-colors">Chart</a>
+          <a href="#social" class="nav-link hover:text-white transition-colors">Social</a>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="#how-to-buy" class="btn-primary hidden sm:inline-flex px-5 py-2 rounded-full text-sm font-bold tracking-wide">BUY NOW</a>
+          <a href="#chart" class="btn-outline hidden sm:inline-flex px-5 py-2 rounded-full text-sm font-bold tracking-wide text-seman-sperm">CHART</a>
+          <button id="menu-btn" class="md:hidden p-2 text-white" aria-label="Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-t border-white/5 px-4 py-4 space-y-3">
+      <a href="#about" class="block py-2 text-gray-300 hover:text-white">About</a>
+      <a href="#gallery" class="block py-2 text-gray-300 hover:text-white">Gallery</a>
+      <a href="#how-to-buy" class="block py-2 text-gray-300 hover:text-white">How to Buy</a>
+      <a href="#chart" class="block py-2 text-gray-300 hover:text-white">Chart</a>
+      <a href="#social" class="block py-2 text-gray-300 hover:text-white">Social</a>
+      <div class="flex gap-3 pt-2">
+        <a href="#how-to-buy" class="btn-primary flex-1 text-center px-4 py-2 rounded-full text-sm font-bold">BUY NOW</a>
+        <a href="#chart" class="btn-outline flex-1 text-center px-4 py-2 rounded-full text-sm font-bold text-seman-sperm">CHART</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Marquee -->
+  <div class="fixed top-16 md:top-20 left-0 right-0 z-40 bg-seman-sperm/90 overflow-hidden py-1.5 text-black">
+    <div class="animate-marquee whitespace-nowrap flex">
+      <span class="mx-8 text-sm font-bold tracking-widest uppercase">$SEMAN IS LIVE &nbsp;•&nbsp; One Typo. Infinite Lore. &nbsp;•&nbsp; The Black Sperm &nbsp;•&nbsp; ANSEM → SEMAN &nbsp;•&nbsp; Buy on swap.pump &nbsp;•&nbsp; LP Locked &nbsp;•&nbsp; 0% Tax &nbsp;•&nbsp;</span>
+      <span class="mx-8 text-sm font-bold tracking-widest uppercase">$SEMAN IS LIVE &nbsp;•&nbsp; One Typo. Infinite Lore. &nbsp;•&nbsp; The Black Sperm &nbsp;•&nbsp; ANSEM → SEMAN &nbsp;•&nbsp; Buy on swap.pump &nbsp;•&nbsp; LP Locked &nbsp;•&nbsp; 0% Tax &nbsp;•&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-16 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="img-fx w-full max-w-4xl mx-auto rounded-2xl shadow-2xl shadow-seman-sperm/20 mb-8 border border-white/10">
+        <img src="banner.png" alt="The Black Sperm Banner" class="w-full rounded-2xl" />
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl tracking-wider mb-4 animate-glitch">
+        THE BLACK <span class="text-seman-sperm">SPERM</span>
+      </h1>
+      <p class="text-2xl sm:text-3xl font-display tracking-[0.2em] text-gray-400 mb-3">$<span class="text-white">SEMAN</span></p>
+
+      <div class="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-1.5 mb-6">
+        <span class="live-dot w-2 h-2 rounded-full bg-green-500"></span>
+        <span class="text-green-400 text-xs font-bold tracking-widest uppercase">Live on Solana</span>
+      </div>
+
+      <p class="text-gray-400 max-w-2xl mx-auto text-lg mb-8 italic">
+        "Proof that one typo can have stronger lore than the original word."
+      </p>
+
+      <!-- Token Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto mb-10">
+        <div class="stat-card rounded-xl px-4 py-3 text-center">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Chain</p>
+          <p class="font-display text-lg tracking-wide text-white">SOLANA</p>
+        </div>
+        <div class="stat-card rounded-xl px-4 py-3 text-center">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Tax</p>
+          <p class="font-display text-lg tracking-wide text-green-400">0 / 0</p>
+        </div>
+        <div class="stat-card rounded-xl px-4 py-3 text-center">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Supply</p>
+          <p class="font-display text-lg tracking-wide text-white">1B</p>
+        </div>
+        <div class="stat-card rounded-xl px-4 py-3 text-center">
+          <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">LP</p>
+          <p class="font-display text-lg tracking-wide text-seman-sperm">LOCKED</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <a id="buy-btn-hero" href="#" target="_blank" rel="noopener" class="btn-primary px-10 py-4 rounded-full text-lg font-bold tracking-widest animate-pulse-glow">BUY NOW</a>
+        <a id="chart-btn-hero" href="#chart" class="btn-outline px-10 py-4 rounded-full text-lg font-bold tracking-widest text-seman-sperm">CHART</a>
+      </div>
+
+      <!-- CA Copy -->
+      <div class="ca-box max-w-xl mx-auto rounded-xl p-4 flex items-center gap-3 cursor-pointer group" id="ca-box" title="Click to copy">
+        <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-seman-sperm/20 flex items-center justify-center">
+          <svg class="w-5 h-5 text-seman-sperm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 text-left min-w-0">
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Contract Address (CA)</p>
+          <p id="ca-text" class="text-sm sm:text-base font-mono text-gray-200 truncate"></p>
+        </div>
+        <span id="copy-label" class="text-xs font-bold text-seman-sperm uppercase tracking-wider group-hover:text-white transition-colors flex-shrink-0">COPY</span>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 mt-5 max-w-xl mx-auto">
+        <a id="jupiter-link" href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener" class="text-xs font-semibold tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:border-seman-sperm/50 hover:bg-seman-sperm/10 transition-all">Swap.pump</a>
+        <a id="dex-link-chip" href="https://dexscreener.com/solana/TBA" target="_blank" rel="noopener" class="text-xs font-semibold tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:border-seman-sperm/50 hover:bg-seman-sperm/10 transition-all">Dexscreener</a>
+        <a href="https://solscan.io/address/TBA" target="_blank" rel="noopener" id="solscan-link" class="text-xs font-semibold tracking-wider uppercase px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:border-seman-sperm/50 hover:bg-seman-sperm/10 transition-all">Solscan</a>
+      </div>
+    </div>
+
+    <a href="#about" class="absolute bottom-8 animate-bounce text-gray-500 hover:text-seman-sperm transition-colors">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-24 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl sm:text-6xl tracking-wider mb-4">THE <span class="text-seman-sperm">LORE</span></h2>
+        <div class="w-24 h-1 bg-seman-sperm mx-auto rounded-full"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1 space-y-6">
+          <p class="text-xl text-gray-300 leading-relaxed">
+            <span class="strikethrough-ansem font-bold text-white text-2xl">ANSEM</span>
+            <span class="text-seman-sperm mx-2">→</span>
+            <span class="font-bold text-white text-2xl">SEMAN</span>
+          </p>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            $SEMAN is made from the letters of famous Solana developer <strong class="text-white">ansem</strong>.
+            What started as a simple spelling mistake evolved into something far greater — a full-blown meme with a sperm narrative that refuses to die.
+          </p>
+          <p class="text-gray-400 leading-relaxed text-lg">
+            Seman started as a typo. Ended as lore. The Black Sperm isn't just a token — it's proof that the internet can turn any accident into a movement.
+          </p>
+          <div class="flex gap-4 pt-4">
+            <a href="https://x.com/blackspermseman" target="_blank" rel="noopener" class="social-icon">
+              <span class="img-fx img-fx--icon img-fx--round inline-block h-12 w-12"><img src="x.png" alt="Twitter" class="h-full w-full object-contain" /></span>
+            </a>
+            <a href="https://t.me/blackspermseman" target="_blank" rel="noopener" class="social-icon">
+              <span class="img-fx img-fx--icon img-fx--round inline-block h-12 w-12"><img src="tg.png" alt="Telegram" class="h-full w-full object-contain" /></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2 flex justify-center">
+          <div class="photo-frame max-w-md w-full mb-10">
+            <div class="tape tape-top-left"></div>
+            <div class="tape tape-top-right"></div>
+            <div class="photo-inner">
+              <video autoplay muted loop playsinline class="w-full aspect-[4/5] object-cover">
+                <source src="main.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Twitter Embed -->
+  <section id="twitter" class="py-24 px-4">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl sm:text-6xl tracking-wider mb-4">Origin  <span class="text-seman-sperm">Story</span></h2>
+        <div class="w-24 h-1 bg-seman-sperm mx-auto rounded-full"></div>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden border border-white/10 bg-black/60 backdrop-blur-sm p-4 sm:p-6">
+        <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Can’t spell <a href="https://x.com/search?q=%24ANSEM&amp;src=ctag&amp;ref_src=twsrc%5Etfw">$ANSEM</a> without SEMAN</p>&mdash; Banks (@Banks) <a href="https://x.com/Banks/status/2073055908201181252?ref_src=twsrc%5Etfw">July 3, 2026</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-24 px-4 bg-black/40 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl sm:text-6xl tracking-wider mb-4">MEME <span class="text-seman-sperm">GALLERY</span></h2>
+        <p class="text-gray-500">The sperm narrative in its purest form — hover to unleash</p>
+        <div class="w-24 h-1 bg-seman-sperm mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <div class="gallery-combined">
+        <!-- Overlapping flowing cluster -->
+        <div class="gallery-cluster">
+          <button class="gallery-card gallery-item" data-img="1.png" type="button" aria-label="View meme 1">
+            <div class="img-fx gallery-card-inner"><img src="1.png" alt="SEMAN Meme 1" loading="lazy" /></div>
+          </button>
+          <button class="gallery-card gallery-item" data-img="2.png" type="button" aria-label="View meme 2">
+            <div class="img-fx gallery-card-inner"><img src="2.png" alt="SEMAN Meme 2" loading="lazy" /></div>
+          </button>
+          <button class="gallery-card gallery-item" data-img="3.png" type="button" aria-label="View meme 3">
+            <div class="img-fx gallery-card-inner"><img src="3.png" alt="SEMAN Meme 3" loading="lazy" /></div>
+          </button>
+          <button class="gallery-card gallery-item" data-img="4.png" type="button" aria-label="View meme 4">
+            <div class="img-fx gallery-card-inner"><img src="4.png" alt="SEMAN Meme 4" loading="lazy" /></div>
+          </button>
+          <button class="gallery-card gallery-item" data-img="5.png" type="button" aria-label="View meme 5">
+            <div class="img-fx gallery-card-inner"><img src="5.png" alt="SEMAN Meme 5" loading="lazy" /></div>
+          </button>
+          <button class="gallery-card gallery-item" data-img="6.png" type="button" aria-label="View meme 6">
+            <div class="img-fx gallery-card-inner"><img src="6.png" alt="SEMAN Meme 6" loading="lazy" /></div>
+          </button>
+        </div>
+
+        <!-- Flowing rotate strip — row 1 -->
+        <div class="gallery-stream">
+          <div class="gallery-stream-track" style="--speed: 38s;">
+            <button class="gallery-flow-card gallery-item" data-img="1.png" type="button" style="--flow-rot: -6deg;"><div class="img-fx"><img src="1.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="2.png" type="button" style="--flow-rot: 4deg;"><div class="img-fx"><img src="2.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="3.png" type="button" style="--flow-rot: -3deg;"><div class="img-fx"><img src="3.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="4.png" type="button" style="--flow-rot: 7deg;"><div class="img-fx"><img src="4.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="5.png" type="button" style="--flow-rot: -5deg;"><div class="img-fx"><img src="5.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="6.png" type="button" style="--flow-rot: 3deg;"><div class="img-fx"><img src="6.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="1.png" type="button" style="--flow-rot: -6deg;"><div class="img-fx"><img src="1.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="2.png" type="button" style="--flow-rot: 4deg;"><div class="img-fx"><img src="2.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="3.png" type="button" style="--flow-rot: -3deg;"><div class="img-fx"><img src="3.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="4.png" type="button" style="--flow-rot: 7deg;"><div class="img-fx"><img src="4.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="5.png" type="button" style="--flow-rot: -5deg;"><div class="img-fx"><img src="5.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="6.png" type="button" style="--flow-rot: 3deg;"><div class="img-fx"><img src="6.png" alt="" loading="lazy" /></div></button>
+          </div>
+        </div>
+
+        <!-- Flowing rotate strip — row 2 (reverse) -->
+        <div class="gallery-stream gallery-stream--reverse">
+          <div class="gallery-stream-track" style="--speed: 32s;">
+            <button class="gallery-flow-card gallery-item" data-img="6.png" type="button" style="--flow-rot: 5deg;"><div class="img-fx"><img src="6.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="5.png" type="button" style="--flow-rot: -4deg;"><div class="img-fx"><img src="5.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="4.png" type="button" style="--flow-rot: 6deg;"><div class="img-fx"><img src="4.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="3.png" type="button" style="--flow-rot: -7deg;"><div class="img-fx"><img src="3.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="2.png" type="button" style="--flow-rot: 3deg;"><div class="img-fx"><img src="2.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="1.png" type="button" style="--flow-rot: -5deg;"><div class="img-fx"><img src="1.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="6.png" type="button" style="--flow-rot: 5deg;"><div class="img-fx"><img src="6.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="5.png" type="button" style="--flow-rot: -4deg;"><div class="img-fx"><img src="5.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="4.png" type="button" style="--flow-rot: 6deg;"><div class="img-fx"><img src="4.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="3.png" type="button" style="--flow-rot: -7deg;"><div class="img-fx"><img src="3.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="2.png" type="button" style="--flow-rot: 3deg;"><div class="img-fx"><img src="2.png" alt="" loading="lazy" /></div></button>
+            <button class="gallery-flow-card gallery-item" data-img="1.png" type="button" style="--flow-rot: -5deg;"><div class="img-fx"><img src="1.png" alt="" loading="lazy" /></div></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Buy -->
+  <section id="how-to-buy" class="py-24 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-4xl sm:text-6xl tracking-wider mb-4">HOW TO <span class="text-seman-sperm">BUY</span></h2>
+        <p class="text-gray-400 text-lg">Get your $SEMAN with SOL in 4 easy steps</p>
+        <div class="w-24 h-1 bg-seman-sperm mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="step-card rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-full bg-seman-sperm text-black flex items-center justify-center font-display text-2xl mb-6">1</div>
+          <h3 class="font-display text-2xl tracking-wide mb-3">GET A SOLANA WALLET</h3>
+          <p class="text-gray-400 leading-relaxed">Download <strong class="text-white">Phantom</strong> or <strong class="text-white">Solflare</strong> wallet. Create a new wallet and securely save your seed phrase. Never share it with anyone.</p>
+        </div>
+
+        <div class="step-card rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-full bg-seman-sperm text-black flex items-center justify-center font-display text-2xl mb-6">2</div>
+          <h3 class="font-display text-2xl tracking-wide mb-3">FUND WITH SOL</h3>
+          <p class="text-gray-400 leading-relaxed">Buy SOL on an exchange like <strong class="text-white">Coinbase</strong> or <strong class="text-white">Binance</strong>, then transfer it to your Solana wallet address. You'll need SOL for the swap and gas fees.</p>
+        </div>
+
+        <div class="step-card rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-full bg-seman-sperm text-black flex items-center justify-center font-display text-2xl mb-6">3</div>
+          <h3 class="font-display text-2xl tracking-wide mb-3">GO TO Swap.pump</h3>
+          <p class="text-gray-400 leading-relaxed">Visit <a href="https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=TBA" target="_blank" rel="noopener" class="text-seman-sperm hover:underline font-semibold">jup.ag</a> and connect your wallet. Paste the $SEMAN contract address in the search bar and select it as the output token.</p>
+        </div>
+
+        <div class="step-card rounded-2xl p-8">
+          <div class="w-12 h-12 rounded-full bg-seman-sperm text-black flex items-center justify-center font-display text-2xl mb-6" style="color: #000;">4</div>
+          <h3 class="font-display text-2xl tracking-wide mb-3">SWAP SOL → $SEMAN</h3>
+          <p class="text-gray-400 leading-relaxed">Enter the amount of SOL you want to swap, set slippage if needed, and hit <strong class="text-white">Swap</strong>. Confirm the transaction in your wallet. Welcome to the sperm narrative.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <button id="copy-ca-buy" class="btn-primary px-12 py-4 rounded-full text-lg font-bold tracking-widest">COPY CA &amp; BUY $SEMAN</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dexscreener Chart -->
+  <section id="chart" class="py-24 px-4 bg-black/40">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-4xl sm:text-6xl tracking-wider mb-4">LIVE <span class="text-seman-sperm">CHART</span></h2>
+        <div class="w-24 h-1 bg-seman-sperm mx-auto rounded-full"></div>
+      </div>
+
+      <div class="rounded-2xl overflow-hidden border border-seman-sperm/30 shadow-2xl shadow-seman-sperm/10 bg-black">
+        <iframe
+          id="dexscreener-embed"
+          src=""
+          title="Dexscreener Chart"
+          class="w-full"
+          style="height: 600px; border: none;"
+          allow="clipboard-write"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="text-center mt-8">
+        <a id="dexscreener-link" href="#" target="_blank" rel="noopener" class="btn-outline inline-flex px-8 py-3 rounded-full font-bold tracking-wide text-seman-sperm">
+          OPEN ON DEXSCREENER →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social -->
+  <section id="social" class="py-24 px-4 bg-black/40">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-16">
+        <h2 class="font-display text-4xl sm:text-6xl tracking-wider mb-4">JOIN THE <span class="text-seman-sperm">NARRATIVE</span></h2>
+        <p class="text-gray-400 text-lg">Follow The Black Sperm community</p>
+        <div class="w-24 h-1 bg-seman-sperm mx-auto rounded-full mt-4"></div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-8 sm:gap-16">
+        <a href="https://x.com/blackspermseman" target="_blank" rel="noopener"
+           class="group flex flex-col items-center gap-4 p-8 rounded-2xl border border-white/10 bg-black/40 hover:border-seman-sperm/50 hover:bg-seman-sperm/5 transition-all duration-300">
+          <span class="img-fx img-fx--icon img-fx--round inline-block h-20 w-20 social-icon"><img src="x.png" alt="Twitter / X" class="h-full w-full object-contain" /></span>
+          <div>
+            <p class="font-display text-2xl tracking-wider">TWITTER / X</p>
+            <p class="text-gray-500 text-sm mt-1">@blackspermseman</p>
+          </div>
+        </a>
+
+        <a href="https://t.me/blackspermseman" target="_blank" rel="noopener"
+           class="group flex flex-col items-center gap-4 p-8 rounded-2xl border border-white/10 bg-black/40 hover:border-seman-sperm/50 hover:bg-seman-sperm/5 transition-all duration-300">
+          <span class="img-fx img-fx--icon img-fx--round inline-block h-20 w-20 social-icon"><img src="tg.png" alt="Telegram" class="h-full w-full object-contain" /></span>
+          <div>
+            <p class="font-display text-2xl tracking-wider">TELEGRAM</p>
+            <p class="text-gray-500 text-sm mt-1">t.me/blackspermseman</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-16 flex flex-wrap justify-center gap-4">
+        <a href="#how-to-buy" class="btn-primary px-10 py-4 rounded-full text-lg font-bold tracking-widest">BUY NOW</a>
+        <a href="#chart" class="btn-outline px-10 py-4 rounded-full text-lg font-bold tracking-widest text-seman-sperm">CHART</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 px-4 border-t border-white/5 bg-black/60">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="img-fx img-fx--round inline-block h-10 w-10"><img src="logo.png" alt="SEMAN" class="h-full w-full object-contain" /></span>
+        <div>
+          <p class="font-display text-lg tracking-wider">THE BLACK SPERM</p>
+          <p class="text-xs text-seman-sperm tracking-[0.3em]">$SEMAN</p>
+        </div>
+      </div>
+      <p class="text-gray-600 text-sm text-center">© 2026 The Black Sperm. This is a meme coin. DYOR. Not financial advice.</p>
+      <div class="flex gap-4">
+        <a href="https://x.com/blackspermseman" target="_blank" rel="noopener"><span class="img-fx img-fx--icon img-fx--round inline-block h-8 w-8 social-icon opacity-60 hover:opacity-100"><img src="x.png" alt="X" class="h-full w-full object-contain" /></span></a>
+        <a href="https://t.me/blackspermseman" target="_blank" rel="noopener"><span class="img-fx img-fx--icon img-fx--round inline-block h-8 w-8 social-icon opacity-60 hover:opacity-100"><img src="tg.png" alt="TG" class="h-full w-full object-contain" /></span></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Image viewer">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-seman-sperm transition-colors" aria-label="Close">
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="Gallery preview" />
+  </div>
+
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    // Replace with your real CA when ready
+    const CONTRACT_ADDRESS = 'TBA';
+
+    const caText = document.getElementById('ca-text');
+    const caBox = document.getElementById('ca-box');
+    const copyLabel = document.getElementById('copy-label');
+    const dexEmbed = document.getElementById('dexscreener-embed');
+    const dexLink = document.getElementById('dexscreener-link');
+    const jupiterUrl = `https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=${CONTRACT_ADDRESS}`;
+
+    function initCA() {
+      caText.textContent = CONTRACT_ADDRESS;
+      dexEmbed.src = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}?embed=1&theme=dark&trades=0&info=0`;
+      dexLink.href = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}`;
+      document.getElementById('chart-btn-hero').href = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}`;
+      document.getElementById('buy-btn-hero').href = jupiterUrl;
+      document.getElementById('jupiter-link').href = jupiterUrl;
+      document.getElementById('dex-link-chip').href = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}`;
+      document.getElementById('solscan-link').href = `https://solscan.io/token/${CONTRACT_ADDRESS}`;
+      document.querySelectorAll('a[href="#how-to-buy"].btn-primary').forEach(el => {
+        el.href = jupiterUrl;
+        el.target = '_blank';
+        el.rel = 'noopener';
+      });
+    }
+
+    async function copyCA() {
+      try {
+        await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+        caBox.classList.add('copied');
+        copyLabel.textContent = 'COPIED!';
+        setTimeout(() => {
+          caBox.classList.remove('copied');
+          copyLabel.textContent = 'COPY';
+        }, 2500);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = CONTRACT_ADDRESS;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        copyLabel.textContent = 'COPIED!';
+        setTimeout(() => { copyLabel.textContent = 'COPY'; }, 2500);
+      }
+    }
+
+    caBox.addEventListener('click', copyCA);
+    document.getElementById('copy-ca-buy').addEventListener('click', () => {
+      copyCA();
+      window.open(jupiterUrl, '_blank');
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Gallery lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.dataset.img;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // 3D tilt on hover (site images, not gallery flow cards)
+    document.querySelectorAll('.img-fx').forEach(el => {
+      if (el.closest('.gallery-card') || el.closest('.gallery-flow-card')) return;
+      el.addEventListener('mousemove', e => {
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `perspective(600px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale(1.06)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = '';
+      });
+    });
+
+    initCA();
+  </script>
+</body>
+</html>
